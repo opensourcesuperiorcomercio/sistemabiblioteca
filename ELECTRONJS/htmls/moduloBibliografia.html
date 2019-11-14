@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../javascripts/funcionesBibliografia.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body onload="configurarCategoriasCDU()">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <h3 class="display-4 ">BIBLIOGRAFÍA</h3>
+        </div>
+        <p class="mx-5">
+            En este apartado podrá consultar información respecto a la biliografía disponible,
+            así también como añadir nuevo material a los registros, modificar sus datos o darlos de baja
+        </p>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="tituloInput">Título de bibliografía:</label>
+                    <input class="form-control" id="tituloInput" placeholder="Ingrese el título">
+                </div>
+                <div class="form-group">
+                    <label for="autoresInput">Autor o autores:</label>
+                    <input class="form-control" id="autoresInput"
+                        placeholder="Ingrese el autor o autores separados por coma">
+
+                </div>
+                <div class="form-group">
+                    <label for="anioPublicacionInput">Año de publicación:</label>
+                    <input class="form-control" id="anioPublicacionInput" placeholder="Ingrese el año de publicación">
+
+                </div>
+                <div class="form-group">
+                    <label for="editorialInput">Editorial:</label>
+                    <input class="form-control" id="editorialInput" placeholder="Ingrese el nombre de la editorial">
+
+                </div>
+
+            </div>
+
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="ISBNInput">ISBN:</label>
+                    <input class="form-control" id="ISBNInput" placeholder="Ingrese el ISBN sin puntos ni guiones">
+                </div>
+                <div class="form-group">
+                    <label for="descripcionInput">Descripción:</label>
+                    <input class="form-control" id="descripcionInput"
+                        placeholder="Ingrese una descripción sobre este material">
+
+                </div>
+                <div class="form-group">
+                    <label for="edicionInput">Edición:</label>
+                    <input class="form-control" id="edicionInput" placeholder="Ingrese la edición de esta bibliografía">
+
+                </div>
+                <div class="form-group">
+                    <label for="lugarImpresionInput">Lugar de impresión:</label>
+                    <input class="form-control" id="lugarImpresionInput"
+                        placeholder="Ingrese el lugar de impresión este material">
+                </div>
+            </div>
+            <div class="col-4">
+
+                <div class="form-group">
+                    <label for="tejueloInput">Tejuelo resultante:</label>
+                    <input class="form-control" id="tejueloInput" disabled>
+                </div>
+                <div class="form-group">
+
+                    <label for="categoriaCDUInput">Categoria CDU:</label>
+                    <select class="form-control" id="categoriaCDU" onchange="actualizarMaterias()">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="materiaCDUInput">Materia CDU:</label>
+
+                    <select class="form-control" id="materiaCDU" onchange="actualizarSubMaterias()">
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="submateriaCDUInput">Submateria CDU:</label>
+
+                    <select class="form-control" id="submateriaCDU">
+                    </select>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="d-flex align-items-end justify-content-around mt-3">
+            <button onclick=abrirBuscador() id="botonBuscar" class="btn btn-primary">Buscar bibliografía</button>
+            <button onclick=darDeAltaBibliografia() class="btn btn-primary">Dar de alta</button>
+            <button class="btn btn-primary">Agregar ejemplar</button>
+            <button class="btn btn-primary">Actualizar info</button>
+
+            <button class="btn btn-primary">Dar de baja</button>
+
+            <a href="principal.html" class="btn btn-primary">
+                <div class="col align-middle">
+                    Atrás
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

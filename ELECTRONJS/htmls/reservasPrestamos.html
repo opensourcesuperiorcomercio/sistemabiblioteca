@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../css/uikit.min.css">
+    <script src="../js/uikit.min.js"></script>
+    <script src="../javascripts/funcionesPrestamos.js"></script>
+</head>
+
+<body>
+
+    <center>
+        <h1 class="mt-5"> PRÉSTAMOS Y RESERVAS</h1>
+    </center>
+
+    <!-- Escribiendo un comentario -->
+    <!-- <center> -->
+        <div class="container-fluid px-5" style="width: 100wh;">
+            <div class="row mt-3">
+                <h3>Bibliografia</h3>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Código:</label>
+                        <input readonly type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Código de bibliografia">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Título:</label>
+                            <input readonly type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Titulo de bibliografia">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Ejemplar:</label>
+                        <input readonly class="form-control" id="exampleFormControlSelect1" placeholder="Nro. ejemplar">
+
+                    </div>
+                </div>
+                <div class="col-2 align-self-center pl-4 pr-0">
+                    <div class="form-group form-check" style="margin-top: 32px">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label readonly class="form-check-label" for="exampleCheck1">¿Está disponible?</label>
+                    </div>
+                </div>
+                <div class="col-2 align-self-center m-0 p-0">
+                    <button type="button" class="btn btn-primary" type="button" uk-toggle="target: #modal-example"
+                        style="margin-top: 10px;" onclick="setupBuscarBibliografia()">Buscar bibliografia</button>
+                </div>
+
+
+            </div>
+            <div class="row mt-3">
+                <h3>Usuario</h3>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Código:</label>
+                        <input readonly type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Código de usuario">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">DNI:</label>
+                            <input type="text" class="form-control"
+                                aria-describedby="emailHelp" placeholder="Numero de documento">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Nombre:</label>
+                        <input readonly type="text" class="form-control" placeholder="Nombre de usuario">
+                    </div>
+                </div>
+
+                <div class="col-2 align-self-center m-0 p-0">
+                    <button onclick="setupBuscarUsuario()" type="submit" class="btn btn-primary"
+                        style="margin-top: 10px;" uk-toggle="target: #modal-example">Buscar usuario</button>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <h3>Detalles de préstamo/reserva</h3>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Fecha préstamo:</label>
+                            <input oninput="actualizarFechaDevolucion()" type="date" class="form-control" id="fechaprestamo"
+                                aria-describedby="emailHelp" placeholder="Numero de documento">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Fecha devolución:</label>
+                        <input readonly type="date" class="form-control" id="fechadevolucion" placeholder="Nombre de usuario">
+                    </div>
+                </div>
+            </div>
+
+            <a href="principal.html" class="btn btn-primary">
+                <div class="col align-middle">
+                    Atrás
+                </div>
+            </a>
+
+            <div id="modal-example" uk-modal>
+                <div class="uk-modal-dialog uk-modal-body">
+                    <div class="container">
+                        <h3 id="tituloBuscador"></h3>
+                        <div class="row">
+
+                            <div class="col-4">
+
+                                <p>Criterio de busqueda</p>
+                                <select class="form-control" name="" id="dropDownColumnas"></select>
+                            </div>
+
+                            <div class="col-6">
+                                <p>Texto a buscar</p>
+                                <input class="form-control" type="text" placeholder="Ingrese texto a buscar" id="campoBusqueda">
+
+                            </div>
+
+                            <div class="col-2" style="margin-top: 43px;">
+                                <button class="btn btn-primary" onclick="buscar()">Buscar</button>
+
+                            </div>
+                        </div>
+                        <div class="d-flex row justify-content-center my-2">
+                            <div class="form-check col-6">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="contengaTextoRadio"
+                                    value="option1" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Que contenga el texto ingresado
+                                </label>
+                            </div>
+                            <div class="form-check col-6">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="igualaTextoRadio"
+                                    value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Que sea igual al texto ingresado
+                                </label>
+                            </div>
+                        </div>
+                        <div class="uk-overflow-auto" style="max-height: 50vh;
+                            overflow: auto;">
+                            <table class="uk-table uk-table-small uk-table-divider" id="tablaresultadosconsulta">
+                                <thead>
+                                    <tr id="titulosTabla">
+                                    </tr>
+                                </thead>
+                                <tbody id="contenidoTabla">
+
+                            
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+</body>
+
+</html>
